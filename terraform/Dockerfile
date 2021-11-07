@@ -8,6 +8,7 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod 700 /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["dumb-init", "--", "docker-entrypoint.sh"]
 CMD ["provision"]

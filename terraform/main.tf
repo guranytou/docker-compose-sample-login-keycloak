@@ -1,10 +1,10 @@
-terraform {
-  required_version = "~> 1.0"
+ terraform {
+  required_version = "1.0.10"
 
   required_providers {
     keycloak = {
       source  = "mrparkers/keycloak"
-      version = "~> 2.0"
+      version = "3.5.1"
     }
   }
 }
@@ -36,5 +36,13 @@ resource "keycloak_user" "test_user" {
   email = "Mendako@sample.email.address.io"
   first_name = "Opisthoteuthis"
   last_name = "Depressa"
+}
 
+resource "keycloak_oidc_identity_provider" "realm_identity_provider" {
+  realm             = keycloak_realm.master.id
+  alias             = "my-idp"
+  authorization_url = "https://authorizationurl.com"
+  client_id         = "clientID"
+  client_secret     = "clientSecret"
+  token_url         = "https://tokenurl.com"
 }
