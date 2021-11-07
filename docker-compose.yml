@@ -29,15 +29,15 @@ services:
       KEYCLOAK_URL: http://keycloak:8080
       TZ: Asia/Tokyo
   
-  server:
-    build: 
-      context: ./server
-    hostname: server
-    container_name: http-server-for-keycloak
-    networks:
-      - keycloak
-    ports:
-      - 8000:8000
+  # server:
+  #   build: 
+  #     context: ./server
+  #   hostname: server
+  #   container_name: http-server-for-keycloak
+  #   networks:
+  #     - keycloak
+  #   ports:
+  #     - 8000:8000
 
 networks:
     keycloak:

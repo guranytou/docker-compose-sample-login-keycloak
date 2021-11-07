@@ -28,21 +28,14 @@ resource "keycloak_realm" "master" {
   }
 }
 
-resource "keycloak_user" "test_user" {
-  realm_id = keycloak_realm.master.id
-  username = "mendako"
-  enabled = true
+resource "keycloak_openid_client" "openid_client" {
+  realm_id            = keycloak_realm.master.id
+  client_id           = "test-client"
 
-  email = "Mendako@sample.email.address.io"
-  first_name = "Opisthoteuthis"
-  last_name = "Depressa"
-}
+  name                = "test client"
+  enabled             = true
 
-resource "keycloak_oidc_identity_provider" "realm_identity_provider" {
-  realm             = keycloak_realm.master.id
-  alias             = "my-idp"
-  authorization_url = "https://authorizationurl.com"
-  client_id         = "clientID"
-  client_secret     = "clientSecret"
-  token_url         = "https://tokenurl.com"
+  access_type         = "CONFIDENTIAL"
+
+  login_theme = "keycloak"
 }
