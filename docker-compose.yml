@@ -1,19 +1,33 @@
 version: "3.8"
 
 services:
-    keycloak:
-      image: jboss/keycloak:latest
-      hostname: keycloak
-      container_name: keycloak
-      ports:
-      - 8080:8080
-      networks:
-        - keycloak
-      environment:
-        KEYCLOAK_USER: admin
-        KEYCLOAK_PASSWORD: admin
-        DB_VENDOR: h2
-        TZ: Asia/Tokyo
+  keycloak:
+    image: jboss/keycloak:latest
+    hostname: keycloak
+    container_name: keycloak
+    ports:
+    - 8080:8080
+    networks:
+      - keycloak
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: h2
+      TZ: Asia/Tokyo
+
+  terraform:
+    build:
+      context: ./terraform
+    hostname: terraform
+    container_name: terraform-for-keycloak
+    networks:
+      - keycloak
+    volumes:
+      - ./.terraform:/.terraform
+      - ./terraform:/terraform:ro
+    environment:
+      KEYCLOAK_URL: http://keycloak:8080
+      TZ: Asia/Tokyo
 
 networks:
     keycloak:
