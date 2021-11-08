@@ -25,7 +25,7 @@ func getConfig() (*oauth2.Config, *oidc.Provider) {
 		}
 		oauth2Config = &oauth2.Config{
 			ClientID:     "testapp",
-			ClientSecret: "Client Credential",
+			ClientSecret: "ClientSecret",
 			Endpoint:     provider.Endpoint(),
 			Scopes:       []string{oidc.ScopeOpenID},
 			RedirectURL:  "http://localhost:8000/callback",
