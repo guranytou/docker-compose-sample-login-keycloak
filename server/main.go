@@ -26,8 +26,8 @@ func getConfig() (*oauth2.Config, *oidc.Provider) {
 		}
 		oauth2Config = &oauth2.Config{
 			// ここにクライアントIDとクライアントシークレットを設定
-			ClientID:     "test",
-			ClientSecret: "884606c8-1e3d-47db-9a81-c6764490e2eb",
+			ClientID:     "testapp",
+			ClientSecret: "e1a8b706-a9ac-4dd7-84fc-1d2513a0763e",
 			Endpoint:     provider.Endpoint(),
 			Scopes:       []string{oidc.ScopeOpenID},
 			RedirectURL:  "http://localhost:8000/callback",
